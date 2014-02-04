@@ -12,6 +12,9 @@ function startup(){
         $.get(filePaht_+'/Bacon_Pancakes.mp3').done(function(){
             $('#alert').html('el mp3 ya ha sido descargado');
             $('#audio source').attr('src', filePaht_+'/Bacon_Pancakes.mp3');
+            $('#rep').html('<audio id="audio" controls="controls">\
+                <source src="'+filePaht_+'/Bacon_Pancakes.mp3" type="audio/mp3" />\
+            </audio>');
         });
     }, 100);
 }
@@ -26,6 +29,7 @@ function fail(){
 }
 
 function downloadFile(){
+    $('#alert').html('descargando...');
     var fileTransfer = new FileTransfer();
     var uri = encodeURI(file);
     fileTransfer.download(
@@ -33,8 +37,11 @@ function downloadFile(){
         filePaht_+'/Bacon_Pancakes.mp3',
         function(entry) {
             console.log("download complete: " + entry.fullPath);
-            alert('descarga completa');
-            $('#audio source').attr('src', entry.fullPath);
+            $('#alert').html('descarga completa');
+            
+            $('#rep').html('<audio id="audio" controls="controls">\
+                <source src="'+filePaht_+'/Bacon_Pancakes.mp3" type="audio/mp3" />\
+            </audio>');
         },
         function(error) {
             console.log("download error source " + error.source);
