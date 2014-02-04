@@ -21,6 +21,9 @@ function gotFS(fileSystem) {
     filePaht_ = fileSystem.root.fullPath;
     console.log('File Path: '+filePaht_);
 }
+function fail(){
+    console.log('fail to get filepath');
+}
 
 function downloadFile(){
     var fileTransfer = new FileTransfer();
