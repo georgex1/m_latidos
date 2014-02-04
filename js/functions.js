@@ -4,13 +4,15 @@ var file = 'http://www.thepastoapps.com/proyectos/georgex/Bacon_Pancakes.mp3';
 document.addEventListener("deviceready", startup, false);
 
 function startup(){
+    console.log('entro a startup');
     window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     
     setTimeout(function(){
-        $.get(filePaht_+'/Bacon_Pancakes.mp3').done(function(){}
-        $('#alert').html('el mp3 ya ha sido descargado');
-        $('#audio source').attr('src', filePaht_+'/Bacon_Pancakes.mp3');
+        $.get(filePaht_+'/Bacon_Pancakes.mp3').done(function(){
+            $('#alert').html('el mp3 ya ha sido descargado');
+            $('#audio source').attr('src', filePaht_+'/Bacon_Pancakes.mp3');
+        });
     }, 100);
 }
 
