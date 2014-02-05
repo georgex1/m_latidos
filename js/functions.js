@@ -32,6 +32,7 @@ function fail(){
 }
 
 function downloadFile(){
+    $();
     $('#alert').html('descargando...');
     var fileTransfer = new FileTransfer();
     var uri = encodeURI(file);
