@@ -63,13 +63,17 @@ var mediaTimer = null;
 // Play audio
 //
 function playAudio() {
+    
+    if (!my_media) {
+    
     src = filePaht_+'/Bacon_Pancakes.mp3';
     // Create Media object from src
     my_media = new Media(src, onSuccess, onError);
 
     // Play audio
     my_media.play();
-
+    $('#playAudio').hide();
+    $('#pauseAudio').show();
     // Update my_media position every second
     if (mediaTimer == null) {
         mediaTimer = setInterval(function() {
@@ -89,12 +93,15 @@ function playAudio() {
             );
         }, 1000);
     }
+    }
 }
 
 // Pause audio
 //
 function pauseAudio() {
     if (my_media) {
+        $('#playAudio').show();
+        $('#pauseAudio').hide();
         my_media.pause();
     }
 }
