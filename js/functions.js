@@ -5,13 +5,13 @@ var fileSystem;
 document.addEventListener('deviceready', deviceready, false);
 
 function deviceready() {
-    console.log('dv ready');
+    $('#logP').html('dv ready');
   
     //step one is to request a file system    
     window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, 
         function(fs) {
             fileSystem = fs;
-            console.log('fileSystem: ' + fileSystem);
+            $('#logP').html('fileSystem: ' + fileSystem);
             //buttonDom = document.querySelector('#startDl');
             //buttonDom.addEventListener('touchend', startDl, false);
             //buttonDom.removeAttribute("disabled");
@@ -24,15 +24,16 @@ function deviceready() {
 }
 
 function startDl() {
-    $('#startDl').attr('disabled', 'disabled');
+    
+    $('#status').html('Iniciando descarga...') ;
     
     var ft = new FileTransfer();
     var uri = encodeURI("http://archive.org/download/Kansas_Joe_Memphis_Minnie-When_Levee_Breaks/Kansas_Joe_and_Memphis_Minnie-When_the_Levee_Breaks.mp3");
 
     var downloadPath = fileSystem.root.fullPath + "/download.mp3";
     
-    console.log('downloadPath: '+downloadPath);
-    console.log('iniciando progreso descarga');
+    $('#logP').html('downloadPath: '+downloadPath);
+    $('#logP').html('iniciando progreso descarga');
     
     ft.onprogress = function(progressEvent) {
         if (progressEvent.lengthComputable) {
@@ -47,10 +48,10 @@ function startDl() {
         }
     };
     
-    console.log('iniciando descarga');
+    $('#logP').html('iniciando descarga');
     ft.download(uri, downloadPath, 
     function(entry) {
-        console.log('descarga completada');
+        $('#logP').html('descarga completada');
         $('#status').html('') ;
         var media = new Media(entry.fullPath, null, function(e) { alert(JSON.stringify(e));});
         media.play();
