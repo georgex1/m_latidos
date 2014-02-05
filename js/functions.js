@@ -8,7 +8,9 @@ function deviceready() {
     $('#logP').html('dv ready');
   
     //step one is to request a file system    
-    window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, 
+    
+    window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
         function(fs) {
             fileSystem = fs;
             $('#logP').html('fileSystem: ' + fileSystem);
