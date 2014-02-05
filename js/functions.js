@@ -1,5 +1,8 @@
 var filePaht_ = '';
-var file = 'http://www.thepastoapps.com/proyectos/georgex/Bacon_Pancakes.mp3';
+//var songName = 'Bacon_Pancakes.mp3';
+var songName = 'Bacon_Pancakes.wav';
+
+var file = 'http://www.thepastoapps.com/proyectos/georgex/'+songName;
 
 document.addEventListener("deviceready", startup, false);
 
@@ -9,11 +12,11 @@ function startup(){
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     
     setTimeout(function(){
-        $.get(filePaht_+'/Bacon_Pancakes.mp3').done(function(){
+        $.get(filePaht_+'/'+songName).done(function(){
             $('#alert').html('el mp3 ya ha sido descargado');
-            $('#audio source').attr('src', filePaht_+'/Bacon_Pancakes.mp3');
+            $('#audio source').attr('src', filePaht_+'/'+songName);
             $('#rep').html('<audio id="audio" controls="controls">\
-                <source src="'+filePaht_+'/Bacon_Pancakes.mp3" type="audio/mp3" />\
+                <source src="'+filePaht_+'/'+songName+'" type="audio/mp3" />\
             </audio>');
         });
     }, 100);
@@ -34,13 +37,13 @@ function downloadFile(){
     var uri = encodeURI(file);
     fileTransfer.download(
         uri,
-        filePaht_+'/Bacon_Pancakes.mp3',
+        filePaht_+'/'+songName,
         function(entry) {
             console.log("download complete: " + entry.fullPath);
             $('#alert').html('descarga completa');
             
             $('#rep').html('<audio id="audio" controls="controls">\
-                <source src="'+filePaht_+'/Bacon_Pancakes.mp3" type="audio/mp3" />\
+                <source src="'+filePaht_+'/'+songName+'" type="audio/mp3" />\
             </audio>');
         },
         function(error) {
@@ -66,7 +69,7 @@ function playAudio() {
     
     //if (!my_media) {
     
-    src = filePaht_+'/Bacon_Pancakes.mp3';
+    src = filePaht_+'/'+songName;
     // Create Media object from src
     my_media = new Media(src, onSuccess, onError);
 
