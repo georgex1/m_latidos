@@ -24,15 +24,12 @@
                 <h1>Page Title</h1>
     	    </div>
             <div data-role="content">
-                <p>
-                Kansas Joe McCoy and Memphis Minnie – "When The Levee Breaks"
-                </p>
-                
-                <p>
-                <button id="startDl" disabled>Click to Download and Play</button>
-                </p>
-                
-                <div id="status"></div>
+                <p id="alert"></p><br />
+                <p id="statusUpdV"></p><br />
+                <div id="rep">
+                </div><br />
+                <p><a href="javascript:;" id="playAudio" onclick="playAudio()">PLAY</a> <a href="javascript:;" id="pauseAudio" style="display:none;" onclick="pauseAudio()">PAUSE</a> <a href="javascript:;" onclick="stopAudio()">STOP</a> | <span id="audio_position"></span></p><br />
+                <a href="javascript:;" onclick="downloadFile()">Download</a>
             </div>
         </div><!--home-->
         
