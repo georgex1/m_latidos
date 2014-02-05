@@ -32,11 +32,11 @@ function fail(){
 }
 
 function downloadFile(){
-    $();
     $('#alert').html('descargando...');
-    var fileTransfer = new FileTransfer();
+    //var fileTransfer = new FileTransfer();
     var uri = encodeURI(file);
-    fileTransfer.download(
+    var ft = new FileTransfer();
+    ft.download(
         uri,
         filePaht_+'/'+songName,
         function(entry) {
@@ -53,6 +53,22 @@ function downloadFile(){
             console.log("upload error code" + error.code);
         }
     );
+    
+    $('#statusUpdV').html('Loading ..');
+    ft.onprogress = function(progressEvent) {
+        if (progressEvent.lengthComputable) {
+            var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+            $('#statusUpdV').html(perc + "% loaded...");
+        } else {
+            if($('#statusUpdV').html("")) {
+                $('#statusUpdV').html("Loading");
+            } else {
+                $('#statusUpdV').append(".");
+            }
+        }
+    }
+
+    $('#statusUpdV').html('');
     // not exists code
 }
 
