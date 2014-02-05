@@ -110,6 +110,8 @@ function pauseAudio() {
 //
 function stopAudio() {
     if (my_media) {
+        $('#playAudio').show();
+        $('#pauseAudio').hide();
         my_media.stop();
     }
     clearInterval(mediaTimer);
