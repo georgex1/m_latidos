@@ -64,7 +64,7 @@ var mediaTimer = null;
 //
 function playAudio() {
     
-    if (!my_media) {
+    //if (!my_media) {
     
     src = filePaht_+'/Bacon_Pancakes.mp3';
     // Create Media object from src
@@ -93,7 +93,7 @@ function playAudio() {
             );
         }, 1000);
     }
-    }
+    //}
 }
 
 // Pause audio
