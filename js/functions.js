@@ -2,6 +2,7 @@ var buttomDom;
 var statusDom;
 var fileSystem;
 var filePaht_ = '';
+var Audio = '';
 
 document.addEventListener('deviceready', deviceready, false);
 
@@ -12,6 +13,13 @@ function deviceready() {
     
     window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    
+    setTimeout(function(){
+        $.get(filePaht_ + "/download.mp3").done(function(){
+            Audio = filePaht_ + "/download.mp3";
+            $('#haveAudio').html('<a href="javascript:;" onclick="playAudio()">MP3 descargado, click para reproducir</a>');
+        });
+    }, 100);
 }
 
 function gotFS(fileSystem) {
@@ -52,13 +60,17 @@ function startDl() {
     function(entry) {
         $('#logP').html('descarga completada');
         $('#status').html('') ;
-        var media = new Media(entry.fullPath, null, function(e) { alert(JSON.stringify(e));});
-        media.play();
         
+        Audio = entry.fullPath;
     }, 
     function(error) {
         alert('Crap something went wrong...');    
     });
         
     
+}
+
+function playAudio(){
+    var media = new Media(Audio, null, function(e) { alert(JSON.stringify(e));});
+    media.play();
 }
